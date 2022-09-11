@@ -1,0 +1,14 @@
+dist
+node_modules
+.azurite
+__azurite*
+__blobstorage__
+src/app.tsx
+*.sqlite
+.vs
+cypress/videos/
+cypress/screenshots/
+cypress/reports/
+.vscode/vscode-chrome-debug-userdatadir/
+coverage/
+.nyc_output/

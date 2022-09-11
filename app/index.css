@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+
+@import "simplebar/dist/simplebar.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.simplebar-scrollbar::before {
+    background: #a7aaad !important;
+}
+
+@layer base {
+    html {
+        font-family: "Source Sans Pro", sans-serif;
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background: none;
+        z-index: 10;
+        margin-right: -6px;
+        cursor: pointer;
+    }
+    .resizer {
+        cursor: col-resize;
+        user-select: none;
+        touch-action: none;
+        transform: translateY(-50%);
+        @apply absolute right-0 top-1/2 h-full w-1.5 bg-accent-purple opacity-100;
+    }
+
+    .resizer.isResizing {
+        @apply bg-accent-purple opacity-100;
+    }
+
+    .hide-scroll::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .factory-sidebar td,
+    .factory-sidebar table,
+    .factory-sidebar tr {
+        @apply border-none;
+    }
+
+    .factory-sidebar table td:first-child {
+        @apply hidden;
+    }
+    .factory-sidebar table tbody tr:first-child td svg {
+        @apply !fill-black;
+    }
+
+    .factory-sidebar table tbody tr:first-child td div {
+        @apply !text-black;
+    }
+
+    .factory-sidebar .table-container {
+        @apply rounded-l-lg rounded-r-none;
+    }
+
+    .group-selected [type="checkbox"]:checked {
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%233E66FB' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        @apply text-white;
+    }
+
+    .dialog {
+        @apply !top-1/2 -translate-y-1/2;
+    }
+
+    .group-row {
+        background: url("data:image/svg+xml;utf8,<svg width='3' height='1' xmlns='http://www.w3.org/2000/svg'><rect width='3' height='1' style='fill:%23F2F6FC' /></svg>") center;
+        @apply bg-repeat-x;
+    }
+
+    .v6import .table-container {
+        @apply rounded-none border-none;
+    }
+
+    .v6import table {
+        @apply !border-separate !border-spacing-y-2;
+    }
+
+    .v6import table td {
+        @apply !border;
+    }
+
+    .v6import table .group-selected td {
+        @apply bg-white !border !border-accent-purple;
+    }
+
+    .v6import table td:first-child {
+        @apply !border-r-0 !border-l;
+    }
+
+    .v6import table td:last-child {
+        @apply !border-l-0 !border-r;
+    }
+
+    .v6import table .invisible {
+        @apply !visible;
+    }
+
+    .priority {
+        background-image: url(./assets/img/pattern.svg);
+        background-repeat: repeat;
+        background-position: center;
+    }
+}
+
+@layer components {
+    option {
+        @apply bg-white text-black;
+    }
+}
+
+svg {
+    fill: currentColor;
+}

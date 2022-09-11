@@ -1,0 +1,97 @@
+{
+  "auth": {
+    "identityProviders": {
+      "customOpenIdConnectProviders": {
+        "azureb2c": {
+          "registration": {
+            "clientIdSettingName": "B2CCLIENTID",
+            "clientCredential": {
+              "clientSecretSettingName": "B2CSECRET"
+            },
+            "openIdConnectConfiguration": {
+              "wellKnownOpenIdConfiguration": ""
+            }
+          },
+          "login": {
+            "nameClaimType": "http://schemas.microsoft.com/identity/claims/objectidentifier",
+            "scopes": ["openid", "profile"]
+          }
+        }
+      }
+    }
+  },
+    "routes": [
+      {
+        "route": "/api/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/app/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/public/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/assets/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/@vite/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/node_modules/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/@react-refresh",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/login",
+        "redirect": "/.auth/login/azureb2c/"
+      },
+      {
+        "route": "/logout",
+        "rewrite": "/.auth/logout"
+      },
+      {
+        "route": "/admin",
+        "allowedRoles": ["admin"]
+      },
+      {
+        "route": "/*",
+        "allowedRoles": ["authenticated"]
+      }
+    ],
+    "navigationFallback": {
+      "rewrite": "index.html",
+      "exclude": [
+        "/images/*.{png,jpg,gif}",
+        "/css/*",
+        "/api/*", 
+        "/src/*.tsx",
+        "/.well-known/*",
+        "/@vite/*"
+        ]
+    },
+    "responseOverrides": {
+      "400": {
+        "rewrite": "/invalid-invitation-error.html"
+      },
+      "401": {
+        "redirect": "/login",
+        "statusCode": 302
+      },
+      "404": {
+        "rewrite": "/404.html"
+      }
+    },
+    "globalHeaders": {
+    },
+    "mimeTypes": {
+      ".json": "text/json"
+    }
+  }
